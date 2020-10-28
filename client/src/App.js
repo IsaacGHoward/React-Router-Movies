@@ -50,22 +50,3 @@ export default function App () {
     
   );
 }
-/*
-function MovieList (props){
-  if(!props.movies)
-  return(
-    <h3>Loading Movies ...</h3>
-  );
-  return(
-    <h2>Movies : </h2>
-  )
-}
-*/
-/*
-function Movie (){
-  let { id } = useParams();
-  return(
-    <div>Movie ID: {id}</div>
-  )
-}
-*/
