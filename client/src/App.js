@@ -8,7 +8,7 @@ import {
   useParams
 } from "react-router-dom";
 import SavedList from './Movies/SavedList';
-
+import MovieList from './Movies/MovieList';
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
   const [movieList, setMovieList] = useState([]);
@@ -18,6 +18,8 @@ export default function App () {
       axios
         .get('http://localhost:5000/api/movies') // Study this endpoint with Postman
         .then(response => {
+          console.log(response.data);
+          setMovieList(response.data);
           // Study this response with a breakpoint or log statements
           // and set the response data as the 'movieList' slice of state
         })
@@ -36,9 +38,8 @@ export default function App () {
     <Router>
       <div>
         <SavedList list={[ /* This is stretch */]} />
-
         <Route exact path="/">
-          <MovieList/>
+          <MovieList movies={movieList}/>
         </Route>
         <Route path="/movies/:id">
           <Movie/>
@@ -48,11 +49,17 @@ export default function App () {
     
   );
 }
-function MovieList (){
+/*
+function MovieList (props){
+  if(!props.movies)
   return(
-    <div>Movies</div>
+    <h3>Loading Movies ...</h3>
   );
+  return(
+    <h2>Movies : </h2>
+  )
 }
+*/
 
 function Movie (){
   let { id } = useParams();
